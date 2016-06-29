@@ -30,24 +30,14 @@
 
 @implementation MyTabBarController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-   
-
-    
     
     [self addNavControllers];
-    
-    
-    
     [self resetTabBarButton];
-    
-    
- 
     [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
-    
-    
-      
+
 }
 
 
@@ -55,8 +45,6 @@
 
 -(void)resetTabBarButton
 {
-    
-
     //移除原来的
     for (UIView *view in self.tabBar.subviews) {
         Class cls=NSClassFromString(@"UITabBarButton");
@@ -64,14 +52,10 @@
             [view removeFromSuperview];
         }
     }
-    
       //添加bar
-    
     _tabbarView=[[ThemeImageView alloc]initWithFrame:CGRectMake(0, 0,kwidth, 49)];
-    
     _tabbarView.imgName=@"mask_navbar.png";
     _tabbarView.userInteractionEnabled=YES;
-    
     [self.tabBar addSubview:_tabbarView];
     
     

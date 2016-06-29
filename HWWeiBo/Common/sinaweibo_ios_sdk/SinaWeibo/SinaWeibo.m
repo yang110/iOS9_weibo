@@ -377,6 +377,8 @@
     if ([self isAuthValid])
     {
         [params setValue:self.accessToken forKey:@"access_token"];
+        
+        
         NSString *fullURL = [kSinaWeiboSDKAPIDomain stringByAppendingString:url];
         
         SinaWeiboRequest *_request = [SinaWeiboRequest requestWithURL:fullURL
@@ -386,6 +388,8 @@
         _request.sinaweibo = self;
         [requests addObject:_request];
         [_request connect];
+        
+        
         return _request;
     }
     else

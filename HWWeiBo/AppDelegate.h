@@ -10,8 +10,8 @@
 #import "SinaWeibo.h"
 
 
-#define kAppKey             @"3874545647"
-#define kAppSecret          @"bb520a493d8571ec15b287e44d1cd6b7"
+#define kAppKey             @"3789692602"
+#define kAppSecret          @"62aaeac79af601715ceba54554915d31"
 #define kAppRedirectURI     @"http://www.baidu.com"
 
 #ifndef kAppKey

@@ -11,26 +11,19 @@
 #import "AppDelegate.h"
 #import "ThemeManager.h"
 #import "WeiboModel.h"
-
 #import "WeiboTableView.h"
 #import "WeiboViewLayoutFrame.h"
 #import "MJRefresh.h"
-
 #import "ThemeLabel.h"
 #import "ThemeImageView.h"
-
 #import <AudioToolbox/AudioToolbox.h>
 
 @interface HomeViewController ()
 {
     WeiboTableView *_tableView;
     NSMutableArray *_data;
-    
-    
     ThemeImageView *_barimageView;
     ThemeLabel *_barLabel;
-    
-    
 }
 @end
 
@@ -49,17 +42,12 @@
 
 - (SinaWeibo *)sinaweibo
 {
-    
-    
-  AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     return delegate.sinaweibo;
-
-
 }
 
-
-
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
@@ -73,7 +61,7 @@
     
 }
 
--(void)createTableView
+- (void)createTableView
 {
     _tableView = [[WeiboTableView alloc] initWithFrame:self.view.bounds ];
 
@@ -91,6 +79,7 @@
     _tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 
 }
+
 - (void)loadNewData
 {
     SinaWeibo *sinaweibo = [self sinaweibo];
@@ -117,7 +106,7 @@
 }
 
 
--(void)loadMoreData
+- (void)loadMoreData
 {
     SinaWeibo *sinaweibo = [self sinaweibo];
     
@@ -142,10 +131,7 @@
     
 }
 
-
-
-
--(void)loadData
+- (void)loadData
 {
     SinaWeibo *sinaweibo = [self sinaweibo];
     if ([sinaweibo isAuthValid])
@@ -194,21 +180,15 @@
     for (int i=0;i<statuses.count;i++ )
     {
          NSDictionary *dataDic=statuses[i];
-
         WeiboModel *model=[[WeiboModel alloc]initWithDataDic:dataDic];
         WeiboViewLayoutFrame *layoutFrame=[[WeiboViewLayoutFrame alloc]init];
         layoutFrame.weiboModel=model;
-        
         [mArray addObject:layoutFrame];
-    
     }
     
     if (request.tag==100) {
+        _data=mArray;//加载提示
         
-        
-        _data=mArray;
-        
-//加载提示
         [self completeHUD:@"加载完成"];
         _tableView.hidden = NO;
         
@@ -217,16 +197,10 @@
     {
         if (mArray.count>0)
         {
-            
             [self showNewWeibo:mArray.count];
-            
-            
             NSRange range=NSMakeRange(0, mArray.count);
             NSIndexSet *indexSet=[NSIndexSet indexSetWithIndexesInRange:range];
-            
             [_data insertObjects:mArray atIndexes:indexSet];
-            
-            
         }
         
     }

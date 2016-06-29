@@ -52,6 +52,7 @@
     if ([sinaweiboInfo objectForKey:@"AccessTokenKey"] && [sinaweiboInfo objectForKey:@"ExpirationDateKey"] && [sinaweiboInfo objectForKey:@"UserIDKey"])
     {
         _sinaweibo.accessToken = [sinaweiboInfo objectForKey:@"AccessTokenKey"];
+        NSLog(@"%@",_sinaweibo.accessToken);
         
       
         
@@ -88,9 +89,6 @@
     [[MMExampleDrawerVisualStateManager sharedManager] setLeftDrawerAnimationType:MMDrawerAnimationTypeParallax];
     [[MMExampleDrawerVisualStateManager sharedManager] setRightDrawerAnimationType:MMDrawerAnimationTypeParallax];
 
-    
-    
-    
     //动画
     [mmDraw
      setDrawerVisualStateBlock:^(MMDrawerController *drawerController, MMDrawerSide drawerSide, CGFloat percentVisible) {
@@ -104,22 +102,14 @@
              block(drawerController, drawerSide, percentVisible);
          }
      }];
-    
-    
 
-    
-    
-    
-    
-    
-    
     return YES;
 }
 
 
+
 -(void)sinaweiboDidLogIn:(SinaWeibo *)sinaweibo
 {
-    
     //保存认证的信息
     NSDictionary *authData = [NSDictionary dictionaryWithObjectsAndKeys:
                               sinaweibo.accessToken, @"AccessTokenKey",
@@ -130,10 +120,7 @@
     [[NSUserDefaults standardUserDefaults] setObject:authData forKey:@"HWWeiboAuthData"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    
-
     NSLog(@"登入");
-    
 }
 -(void)sinaweiboDidLogOut:(SinaWeibo *)sinaweibo
 {

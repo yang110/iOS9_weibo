@@ -71,7 +71,11 @@
     WeiboModel *_model=_layoutFrame.weiboModel;
     
 
+
     [self.headImageView sd_setImageWithURL:[NSURL URLWithString:_model.userModel.profile_image_url]];
+
+    
+    
     self.userName.text = _model.userModel.screen_name;
     self.commentCount.text=[NSString stringWithFormat:@"评论数:%@",_model.commentsCount];
     self.source.text=_model.source;
